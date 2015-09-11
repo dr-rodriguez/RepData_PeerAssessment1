@@ -37,12 +37,10 @@ interval5 <-
     mutate(interval=as.integer(as.character(interval)))
 
 
-p <- ggplot(interval5, aes(x=interval, y=mean)) +
+ggplot(interval5, aes(x=interval, y=mean)) +
     geom_line(col='blue', size=1) + 
     labs(x='Time Interval', y='Average Number of Steps') + 
     theme_bw()
-
-print(p)
 
 # Find the maximum
 interval5 %>%
@@ -96,6 +94,7 @@ median(sumdata2$sum)
 activity %>% filter(date=='2012-11-01')
 newactivity %>% filter(date=='2012-11-01')
 sumdata2 %>% filter(date=='2012-11-01')
+sumdata2$sum - sumdata$sum
 # Problem: because of averaging by interval, each day with NA has same values (10766.19)
 
 # Replace missing values (option 2)
@@ -139,3 +138,26 @@ ggplot(sumdata2, aes(date, sum)) +
 # Numeric output required in step
 mean(sumdata2$sum)
 median(sumdata2$sum)
+
+# ========================
+# Create factor based on the day of week
+newactivity2 <- 
+    newactivity %>%
+    mutate(dayofweek = weekdays(as.POSIXct(date))) %>%
+    mutate(typeofday = factor(dayofweek %in% c('Sunday','Saturday'), 
+                            levels=c(F,T), labels=c('weekday','weekend')))
+
+# Group by interval and type of day
+interval5 <-
+    newactivity2 %>%
+    mutate(interval=as.factor(interval)) %>%
+    group_by(typeofday, interval) %>%
+    summarize(mean=mean(steps, na.rm=T)) %>%
+    mutate(interval=as.integer(as.character(interval)))
+
+ggplot(interval5, aes(interval, mean)) +
+    facet_grid(. ~ typeofday) +
+    geom_line(col='red', size=1) + 
+    labs(x='Time Interval', y='Average Number of Steps') + 
+    theme_bw()
+
