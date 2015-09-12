@@ -4,6 +4,7 @@
 ## Loading and preprocessing the data
 
 First, I will load up the data and packages and set up some defaults. 
+This requires the zip file be extracted to a file called "activity.csv".
 I'll be using the dplyr and ggplot2 R packages.  
 No additional processing is needed at this stage.
 
@@ -19,7 +20,7 @@ activity <- read.csv('activity.csv', stringsAsFactors=T)
 
 To determine the total number of steps, I group by day and sum up each day. 
 At this stage, I ignore missing values.  
-The histogram display the total number of steps for each day.
+The histogram displays the total number of steps for each day.
 
 
 ```r

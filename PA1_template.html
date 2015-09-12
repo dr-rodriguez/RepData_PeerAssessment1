@@ -66,7 +66,7 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<p>First, I will load up the data and packages and set up some defaults. I’ll be using the dplyr and ggplot2 R packages.<br />No additional processing is needed at this stage.</p>
+<p>First, I will load up the data and packages and set up some defaults. This requires the zip file be extracted to a file called “activity.csv”. I’ll be using the dplyr and ggplot2 R packages.<br />No additional processing is needed at this stage.</p>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
@@ -74,7 +74,7 @@ activity &lt;- read.csv('activity.csv', stringsAsFactors=T)</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
-<p>To determine the total number of steps, I group by day and sum up each day. At this stage, I ignore missing values.<br />The histogram display the total number of steps for each day.</p>
+<p>To determine the total number of steps, I group by day and sum up each day. At this stage, I ignore missing values.<br />The histogram displays the total number of steps for each day.</p>
 <pre class="r"><code>sumdata &lt;- 
     activity %&gt;%
     group_by(date) %&gt;%
