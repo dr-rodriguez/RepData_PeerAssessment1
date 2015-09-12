@@ -145,7 +145,7 @@ newactivity2 <-
     newactivity %>%
     mutate(dayofweek = weekdays(as.POSIXct(date))) %>%
     mutate(typeofday = factor(dayofweek %in% c('Sunday','Saturday'), 
-                            levels=c(F,T), labels=c('weekday','weekend')))
+                            levels=c(F,T), labels=c('Weekday','Weekend')))
 
 # Group by interval and type of day
 interval5 <-
