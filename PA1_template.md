@@ -72,7 +72,6 @@ interval5 <-
     summarize(mean=mean(steps, na.rm=T)) %>%
     mutate(interval=as.integer(as.character(interval)))
 
-
 ggplot(interval5, aes(x=interval, y=mean)) +
     geom_line(col='blue', size=1) + 
     labs(x='Time Interval', y='Average Number of Steps') + 
@@ -192,7 +191,7 @@ Because this happens several times, the end result is that it skews the average 
 ## Are there differences in activity patterns between weekdays and weekends?
 
 To examine the differences in activity patterns between weekdays and weekends, I will generate a few extra columns denoting the day of the week and a factor that denotes weekday/weekend.
-I will the data frame created in the prior step which has missing values imputed.
+I will use the data frame created in the prior step which has missing values imputed.
 
 
 ```r
@@ -210,7 +209,7 @@ interval5 <-
     mutate(interval=as.integer(as.character(interval)))
 ```
 
-The following plot illustrates this.
+The following plot illustrates the difference in activity patterns between weekdays and weekends.
 
 
 ```r

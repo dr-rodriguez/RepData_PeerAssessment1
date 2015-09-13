@@ -102,7 +102,6 @@ ggplot(sumdata, aes(date, sum)) +
     summarize(mean=mean(steps, na.rm=T)) %&gt;%
     mutate(interval=as.integer(as.character(interval)))
 
-
 ggplot(interval5, aes(x=interval, y=mean)) +
     geom_line(col='blue', size=1) + 
     labs(x='Time Interval', y='Average Number of Steps') + 
@@ -165,7 +164,7 @@ sumdata2 &lt;-
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
-<p>To examine the differences in activity patterns between weekdays and weekends, I will generate a few extra columns denoting the day of the week and a factor that denotes weekday/weekend. I will the data frame created in the prior step which has missing values imputed.</p>
+<p>To examine the differences in activity patterns between weekdays and weekends, I will generate a few extra columns denoting the day of the week and a factor that denotes weekday/weekend. I will use the data frame created in the prior step which has missing values imputed.</p>
 <pre class="r"><code>newactivity2 &lt;- 
     newactivity %&gt;%
     mutate(dayofweek = weekdays(as.POSIXct(date))) %&gt;%
@@ -178,7 +177,7 @@ interval5 &lt;-
     group_by(typeofday, interval) %&gt;%
     summarize(mean=mean(steps, na.rm=T)) %&gt;%
     mutate(interval=as.integer(as.character(interval)))</code></pre>
-<p>The following plot illustrates this.</p>
+<p>The following plot illustrates the difference in activity patterns between weekdays and weekends.</p>
 <pre class="r"><code>ggplot(interval5, aes(interval, mean)) +
     facet_grid(. ~ typeofday) +
     geom_line(col='red', size=1) + 
